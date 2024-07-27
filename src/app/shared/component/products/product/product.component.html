@@ -1,0 +1,39 @@
+
+<mat-card class="card">
+    <div class="row">
+        <div class="col-md-4">
+            <img mat-card-xl-image [src]="productObj.images" [alt]="productObj.pname" [title]="productObj.pname">
+        </div>
+        <div class="col-md-8">
+            <mat-card-header>
+                <mat-card-title>
+                    {{productObj.pname}}
+                </mat-card-title>
+                <mat-card-subtitle><Strong>{{productObj.brand}}</Strong></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{productObj.productDescription}}</p>
+
+                <p>
+                    Price : ${{productObj.price}}
+                </p>
+                <p>
+                    Rating : {{productObj.rating}}/5
+                </p>
+                <p>
+                    Status : {{productObj.pstatus}}
+                </p>
+            </mat-card-content>
+        </div>
+    </div>
+</mat-card>
+
+<hr>
+
+<button mat-flat-button color="accent" class="mr-2" routerLink="editProduct" [queryParamsHandling]="'preserve'">
+    Edit Product
+</button>
+
+<button mat-flat-button color="warn" (click)="onRemoveProduct()">
+    Remove Product
+</button>

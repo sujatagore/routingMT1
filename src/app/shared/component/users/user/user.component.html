@@ -1,0 +1,30 @@
+
+
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>
+            {{userObj?.userName}}
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+            User Email : {{userObj?.userEmail}}
+        </p>
+        <p>
+            User Phone : {{userObj?.userPhone}}
+        </p>
+        <p>
+            User Address : {{userObj?.userAddress}}
+        </p>
+    </mat-card-content>
+</mat-card>
+
+<hr>
+
+<button mat-flat-button color="accent" (click)="gotoEditUser()" class="mr-2">
+    Edit User
+</button>
+
+<button mat-flat-button color="warn" (click)="removeUser()">
+    Remove User
+</button>

@@ -1,0 +1,72 @@
+
+<h3>
+    {{isinEditMode ? 'Update User' : 'Add User'}}
+</h3>
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="userForm" (ngSubmit)="onUserAdd()">
+            <mat-form-field class="example-full-Width">
+                <mat-label>User Name</mat-label>
+                <input matInput formControlName="userName">
+
+                <mat-error *ngIf="uc['userName'].invalid && uc['userName'].touched && uc['userName'].hasError('required')">
+                    User Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>User Phone</mat-label>
+                <input matInput formControlName="userPhone">
+
+                <mat-error *ngIf="uc['userPhone'].invalid && uc['userPhone'].touched && uc['userPhone'].hasError('required')">
+                    User Phone is <strong>required</strong>
+                </mat-error>
+
+                <mat-error *ngIf="uc['userPhone'].dirty && uc['userPhone'].hasError('pattern')">
+                    Please Enter Valid Phone number
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>User Email</mat-label>
+                <input matInput formControlName="userEmail">
+
+                <mat-error *ngIf="uc['userEmail'].invalid && uc['userEmail'].touched && uc['userEmail'].hasError('required')">
+                    User Email is <strong>required</strong>
+                </mat-error>
+
+                <mat-error *ngIf="uc['userEmail'].dirty && uc['userEmail'].hasError('pattern')">
+                    Please Enter Valid Email Id
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>User Address</mat-label>
+                <input matInput formControlName="userAddress">
+
+                <mat-error *ngIf="uc['userAddress'].invalid && uc['userAddress'].touched && uc['userAddress'].hasError('required')">
+                    User Address is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>User Role</mat-label>
+                <mat-select formControlName="userRole">
+                    <mat-option value="admin">Admin</mat-option>
+                    <mat-option value="buyer">Buyer</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="uc['userRole'].invalid && uc['userRole'].touched && uc['userRole'].hasError('required')">
+                    User Role is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <button type="submit" mat-raised-button color="accent" *ngIf="!isinEditMode" [disabled]="userForm.invalid">Add User</button>
+
+            <button type="button" mat-raised-button color="warn" 
+                *ngIf="isinEditMode"
+                (click)="onUpdateUser()"
+                [disabled]="userRole === 'buyer'">Update User</button>
+        </form>
+    </mat-card-content>
+</mat-card>

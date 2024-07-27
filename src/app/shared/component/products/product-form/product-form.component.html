@@ -1,0 +1,97 @@
+<h3>
+    {{!isinEditMode? 'Add Product' : 'Update Product'}}
+</h3>
+
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="productForm" (ngSubmit)="onProductAdd()">
+            <mat-form-field class="example-full-Width">
+                <mat-label>Product Name</mat-label>
+                <input matInput formControlName="pname">
+
+                <mat-error *ngIf="pc['pname'].invalid && pc['pname'].touched && pc['pname'].hasError('required')">
+                    Product Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>Product Brand</mat-label>
+                <input matInput formControlName="brand">
+
+                <mat-error *ngIf="pc['brand'].invalid && pc['brand'].touched && pc['brand'].hasError('required')">
+                    Product Brand is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>Product Price</mat-label>
+                <input matInput formControlName="price">
+
+                <mat-error *ngIf="pc['price'].invalid && pc['price'].touched && pc['price'].hasError('required')">
+                    Product Price is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>Product Description</mat-label>
+                <input matInput formControlName="productDescription">
+
+                <mat-error *ngIf="pc['productDescription'].invalid && pc['productDescription'].touched && pc['productDescription'].hasError('required')">
+                    Product Description is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>Product Image</mat-label>
+                <input matInput formControlName="images">
+
+                <mat-error *ngIf="pc['images'].invalid && pc['images'].touched && pc['images'].hasError('required')">
+                    Product Image is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>Product Rating</mat-label>
+                <input matInput formControlName="rating">
+
+                <mat-error *ngIf="pc['rating'].invalid && pc['rating'].touched && pc['rating'].hasError('required')">
+                    Product Rating is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>Product CanReturn</mat-label>
+                <mat-select formControlName="canReturn">
+                    <mat-option value="0">0</mat-option>
+                    <mat-option value="1">1</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="pc['canReturn'].invalid && pc['canReturn'].touched && pc['canReturn'].hasError('required')">
+                    Product CanReturn is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-Width">
+                <mat-label>Product Status</mat-label>
+                <mat-select formControlName="pstatus">
+                    <mat-option value="Delivered">Delivered</mat-option>
+                    <mat-option value="Dispatched">Dispatched</mat-option>
+                    <mat-option value="In Progress">In Progress</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="pc['pstatus'].invalid && pc['pstatus'].touched && pc['pstatus'].hasError('required')">
+                    Product Status is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <button type="submit" mat-raised-button color="accent" *ngIf="!isinEditMode" [disabled]="productForm.invalid">
+                Add Product
+            </button>
+
+            <button type="button" mat-raised-button color="warn" *ngIf="isinEditMode"
+                [disabled]="canReturn === 0" (click)="onProductUpdate()"> 
+                Update Product
+            </button>
+        </form>
+    </mat-card-content>
+</mat-card>
